@@ -1,4 +1,4 @@
-package com.example.sz_car_rental
+package com.example.sz_grocery
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity

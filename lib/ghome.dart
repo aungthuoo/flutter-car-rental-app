@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'bloc/post_bloc.dart';
 import './assets.dart';
 import './tabs/gcarttab.dart';
 import './tabs/ghometab.dart';
@@ -8,44 +6,16 @@ import './tabs/gprofiletab.dart';
 import './tabs/gwishlisttab.dart';
 import './network_image.dart';
 
-void main() => runApp(MyApp());
-
-class MyApp extends StatelessWidget {
-  MyApp({Key key}) : super(key: key);
+class GroceryHomePage extends StatefulWidget {
+  static final String path = "lib/src/pages/grocery/ghome.dart";
 
   @override
-  Widget build(BuildContext context) {
-    //final userRepository = UserRepository();
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        scaffoldBackgroundColor: Colors.grey.shade300,
-        primarySwatch: Colors.red,
-        accentColor: Colors.indigo,
-      ),
-      home: AddressPageState(),
-    );
-
-    /*
-    return BlocProvider(
-      create: (context) =>
-          AuthBloc(httpClient: http.Client(), userRepository: userRepository)
-            ..add(SetUserAddressesEvent(address: this.address)),
-      child: AddressPageState(
-        address: this.address,
-      ),
-    );
-    */
+  GroceryHomePageState createState() {
+    return new GroceryHomePageState();
   }
 }
 
-class AddressPageState extends StatefulWidget {
-  AddressPageState();
-  @override
-  _AddressPageState createState() => _AddressPageState();
-}
-
-class _AddressPageState extends State<AddressPageState> {
+class GroceryHomePageState extends State<GroceryHomePage> {
   int _currentIndex = 0;
   List<Widget> _children = [];
   List<Widget> _appBars = [];
@@ -61,8 +31,16 @@ class _AddressPageState extends State<AddressPageState> {
     _appBars.add(_buildAppBarOne("Your Cart"));
     _appBars.add(_buildAppBarOne("Your Wishlist"));
     _appBars.add(_buildAppBarOne("You"));
-
     super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: _appBars[_currentIndex],
+      body: _children[_currentIndex],
+      bottomNavigationBar: _buildBottomNavigationBar(),
+    );
   }
 
   Widget _buildAppBar() {
@@ -107,42 +85,6 @@ class _AddressPageState extends State<AddressPageState> {
       elevation: 0,
       title: Text(title, style: TextStyle(color: Colors.black)),
     );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocProvider(
-        create: (BuildContext context) => PostBloc()..add(FetchPostEvent(1)),
-        child: BlocListener<PostBloc, PostState>(listener: (context, state) {
-          if (state is PostLoaded) {
-            print('Address save fire!');
-          }
-        }, child: BlocBuilder<PostBloc, PostState>(builder: (context, state) {
-          if (state is PostInitial) {
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-          if (state is PostLoading) {
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-
-          if (state is PostLoaded) {
-            return Scaffold(
-              appBar: _appBars[_currentIndex],
-              backgroundColor: Colors.white,
-              body: _children[_currentIndex],
-              bottomNavigationBar: _buildBottomNavigationBar(),
-            );
-          }
-        })));
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
   }
 
   BottomNavigationBar _buildBottomNavigationBar() {

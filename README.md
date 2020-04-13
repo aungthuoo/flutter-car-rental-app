@@ -1,4 +1,4 @@
-# sz_car_rental
+# sz_grocery
 
 A new Flutter project.
 

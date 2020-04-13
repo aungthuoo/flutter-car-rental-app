@@ -1,45 +1,105 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-//import 'package:rentcar_app/bloc/state_bloc.dart';
-//import 'package:rentcar_app/bloc/state_provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'bloc/post_bloc.dart';
 import 'model/car.dart';
 
 void main() => runApp(MyApp());
 
-//var currentCar = carList.cars[0];
+var currentCar = carList.cars[0];
 
 class MyApp extends StatelessWidget {
+  MyApp({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
+    //final userRepository = UserRepository();
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: MainApp(),
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.red,
+      ),
+      home: Scaffold(
+          /*
+        appBar: AppBar(
+          title: Text('Posts'),
+        ),
+        */
+          body: AddressPageState()),
     );
+
+    /*
+    return BlocProvider(
+      create: (context) =>
+          AuthBloc(httpClient: http.Client(), userRepository: userRepository)
+            ..add(SetUserAddressesEvent(address: this.address)),
+      child: AddressPageState(
+        address: this.address,
+      ),
+    );
+    */
   }
 }
 
-class MainApp extends StatelessWidget {
+class AddressPageState extends StatefulWidget {
+  AddressPageState();
+  @override
+  _AddressPageState createState() => _AddressPageState();
+}
+
+class _AddressPageState extends State<AddressPageState> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        leading: Container(
-            margin: EdgeInsets.only(left: 25),
-            child: Icon(
-              Icons.arrow_back,
-              color: Colors.white,
-            )),
-        actions: <Widget>[
-          Container(
-            margin: EdgeInsets.only(right: 25),
-            child: Icon(Icons.favorite_border),
-          )
-        ],
-      ),
-      backgroundColor: Colors.black,
-      body: LayoutStarts(),
-    );
+    return BlocProvider(
+        create: (BuildContext context) => PostBloc()..add(FetchPostEvent(1)),
+        child: BlocListener<PostBloc, PostState>(listener: (context, state) {
+          if (state is PostLoaded) {
+            print('Address save fire!');
+          }
+        }, child: BlocBuilder<PostBloc, PostState>(builder: (context, state) {
+          if (state is PostInitial) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+          if (state is PostLoading) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+
+          if (state is PostLoaded) {
+            return Scaffold(
+              appBar: AppBar(
+                backgroundColor: Colors.transparent,
+                leading: Container(
+                    margin: EdgeInsets.only(left: 25),
+                    child: Icon(
+                      Icons.arrow_back,
+                      color: Colors.white,
+                    )),
+                actions: <Widget>[
+                  Container(
+                    margin: EdgeInsets.only(right: 25),
+                    child: Icon(Icons.favorite_border),
+                  )
+                ],
+              ),
+              backgroundColor: Colors.black,
+              body: LayoutStarts(),
+            );
+          }
+        })));
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 }
 
@@ -52,34 +112,6 @@ class LayoutStarts extends StatelessWidget {
         CustomBottomSheet(),
         RentButton(),
       ],
-    );
-  }
-}
-
-class RentButton extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Align(
-      alignment: Alignment.bottomRight,
-      child: SizedBox(
-        width: 200,
-        child: FlatButton(
-          onPressed: () {},
-          child: Text(
-            "Rent Car",
-            style: TextStyle(
-                color: Colors.white,
-                fontSize: 18,
-                letterSpacing: 1.4,
-                fontFamily: "arial"),
-          ),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(topLeft: Radius.circular(35)),
-          ),
-          color: Colors.black,
-          padding: EdgeInsets.all(25),
-        ),
-      ),
     );
   }
 }
@@ -128,20 +160,41 @@ class _CarDetailsAnimationState extends State<CarDetailsAnimation>
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<Object>(
-        initialData: StateProvider().isAnimating,
-        stream: stateBloc.animationStatus,
-        builder: (context, snapshot) {
-          snapshot.data ? forward() : reverse();
+    return ScaleTransition(
+      scale: scaleAnimation,
+      child: FadeTransition(
+        opacity: fadeAnimation,
+        child: CarDetails(),
+      ),
+    );
+  }
+}
 
-          return ScaleTransition(
-            scale: scaleAnimation,
-            child: FadeTransition(
-              opacity: fadeAnimation,
-              child: CarDetails(),
-            ),
-          );
-        });
+class RentButton extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      alignment: Alignment.bottomRight,
+      child: SizedBox(
+        width: 200,
+        child: FlatButton(
+          onPressed: () {},
+          child: Text(
+            "Rent Car",
+            style: TextStyle(
+                color: Colors.white,
+                fontSize: 18,
+                letterSpacing: 1.4,
+                fontFamily: "arial"),
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(topLeft: Radius.circular(35)),
+          ),
+          color: Colors.black,
+          padding: EdgeInsets.all(25),
+        ),
+      ),
+    );
   }
 }
 
