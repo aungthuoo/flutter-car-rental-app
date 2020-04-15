@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'bloc/post_bloc.dart';
-import './assets.dart';
 import './tabs/gcarttab.dart';
 import './tabs/ghometab.dart';
 import './tabs/gprofiletab.dart';
 import './tabs/gwishlisttab.dart';
-import './network_image.dart';
 
 void main() => runApp(MyApp());
 
@@ -20,8 +16,8 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.grey.shade300,
-        primarySwatch: Colors.red,
-        accentColor: Colors.indigo,
+        primarySwatch: Colors.green,
+        accentColor: Colors.greenAccent,
       ),
       home: AddressPageState(),
     );
@@ -69,7 +65,7 @@ class _AddressPageState extends State<AddressPageState> {
     return PreferredSize(
       preferredSize: Size.fromHeight(90.0),
       child: Container(
-        margin: EdgeInsets.only(top: 20.0),
+        margin: EdgeInsets.only(top: 15.0),
         child: AppBar(
           elevation: 0,
           backgroundColor: Colors.transparent,
@@ -79,7 +75,7 @@ class _AddressPageState extends State<AddressPageState> {
                 child: TextField(
                   decoration: InputDecoration(
                       contentPadding: EdgeInsets.symmetric(
-                          horizontal: 20.0, vertical: 15.0),
+                          horizontal: 10.0, vertical: 15.0),
                       hintText: "Search products",
                       border: InputBorder.none,
                       suffixIcon: IconButton(
@@ -88,7 +84,16 @@ class _AddressPageState extends State<AddressPageState> {
               ),
             ),
           ),
-          leading: PNetworkImage(deliveryIcon),
+          //leading: PNetworkImage(deliveryIcon),
+          leading:  Padding(
+                          padding: const EdgeInsets.only(left : 10.0),
+                          child: Image.asset(
+                            "assets/app-icon.jpg",
+                            fit: BoxFit.fitWidth,
+                            width: 170.0,
+                            height: 120.0,
+                          ),
+                        ),
         ),
       ),
     );
@@ -111,33 +116,12 @@ class _AddressPageState extends State<AddressPageState> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-        create: (BuildContext context) => PostBloc()..add(FetchPostEvent(1)),
-        child: BlocListener<PostBloc, PostState>(listener: (context, state) {
-          if (state is PostLoaded) {
-            print('Address save fire!');
-          }
-        }, child: BlocBuilder<PostBloc, PostState>(builder: (context, state) {
-          if (state is PostInitial) {
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-          if (state is PostLoading) {
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-
-          if (state is PostLoaded) {
-            return Scaffold(
+    return Scaffold(
               appBar: _appBars[_currentIndex],
               backgroundColor: Colors.white,
               body: _children[_currentIndex],
               bottomNavigationBar: _buildBottomNavigationBar(),
             );
-          }
-        })));
   }
 
   @override

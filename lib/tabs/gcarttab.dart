@@ -18,14 +18,14 @@ class GroceryCartTabView extends StatelessWidget {
             padding: EdgeInsets.all(10.0),
             children: <Widget>[
               GroceryListItemThree(
-                image: pineapple,
+                image: 'https://softwarezay.com/sample_images/grocery/items/watermelon.jpg',
                 subtitle: "4 in a pack",
-                title: "Pineapple",
+                title: "ဖရဲသီး",
               ),
               GroceryListItemThree(
-                image: cabbage,
+                image: 'https://softwarezay.com/sample_images/grocery/items/water-apinatch.jpg',
                 subtitle: "1 kg",
-                title: "cabbage",
+                title: "ကန်စွန်းရွက်",
               ),
             ],
           ),
@@ -60,7 +60,7 @@ class GroceryCartTabView extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Text("Subtotal"),
-                Text("Rs. 1500"),
+                Text("Ks. 1500"),
               ],
             ),
             SizedBox(
@@ -70,7 +70,7 @@ class GroceryCartTabView extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Text("Delivery fee"),
-                Text("Rs. 100"),
+                Text("Ks. 100"),
               ],
             ),
             SizedBox(
@@ -80,7 +80,7 @@ class GroceryCartTabView extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Text("Total"),
-                Text("Rs. 1600"),
+                Text("Ks. 1600"),
               ],
             ),
             SizedBox(
@@ -92,9 +92,9 @@ class GroceryCartTabView extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
-                  Text("Continue to Checkout",
+                  Text("မှာယူမည်",
                       style: TextStyle(color: Colors.white)),
-                  Text("Rs. 1600", style: TextStyle(color: Colors.white)),
+                  Text("Ks. 1600", style: TextStyle(color: Colors.white)),
                 ],
               ),
             )

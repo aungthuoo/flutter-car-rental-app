@@ -12,13 +12,34 @@ class PostInitial extends PostState {
 
 class PostLoading extends PostState {}
 
-class PostLoaded extends PostState {
-  final int index;
-  final int id;
-  PostLoaded({this.index, this.id}) : super([index, id]);
-}
 
 class FetchError extends PostState {
   final String text;
   FetchError({this.text}) : super([]);
+}
+
+
+
+class PostError extends PostState {
+  @override
+  String toString() => 'PostError';
+}
+
+
+
+class PostsLoaded extends PostState {
+  final Posts items;
+  PostsLoaded({this.items}) : super([items]);
+
+  @override
+  String toString() => 'PostsLoaded';
+}
+
+
+class PostLoaded extends PostState {
+  final Post item;
+  PostLoaded({this.item}) : super([item]);
+
+  @override
+  String toString() => 'PostLoaded';
 }

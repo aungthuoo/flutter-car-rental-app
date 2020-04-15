@@ -21,20 +21,24 @@ class GroceryListItemTwo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double imageWidth = (MediaQuery.of(context).size.width / 3) - 20;
+    double imageHeight = (MediaQuery.of(context).size.width / 3) - 20;
+
     return Card(
       elevation: 0.5,
       margin: const EdgeInsets.symmetric(
-        vertical: 8.0,
-        horizontal: 16.0,
+        vertical: 2.0,
+        horizontal: 8.0,
       ),
       child: Row(
         children: <Widget>[
           const SizedBox(width: 10.0),
           Container(
-              height: 80.0,
+              height: imageHeight,
               child: PNetworkImage(
                 image,
-                height: 80.0,
+                height: imageWidth,
+                width: imageHeight,
               )),
           const SizedBox(width: 10.0),
           Expanded(

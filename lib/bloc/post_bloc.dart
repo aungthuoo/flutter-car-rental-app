@@ -2,11 +2,21 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:sz_grocery/model/post.dart';
+import 'package:sz_grocery/model/posts.dart';
+import 'package:sz_grocery/repositories/app_repository.dart';
 
 part 'post_event.dart';
 part 'post_state.dart';
 
 class PostBloc extends Bloc<PostEvent, PostState> {
+  AppRepository appRepository = new AppRepository();
+  final http.Client httpClient;
+  PostBloc({@required this.httpClient});
+
+
   @override
   PostState get initialState => PostInitial();
 
@@ -21,10 +31,19 @@ class PostBloc extends Bloc<PostEvent, PostState> {
       //final orders = await restaurantRepository.fetchNewOrders(0, 20);
       //final tempOrders = await restaurantRepository.exchageHeaders(orders);
       //yield OrdersLoaded(id : 0, name: 'အော်ဒါအသစ်များ', orders: tempOrders);
-
-    } else if (event is FetchPostEvent) {
+    
+    }else if (event is FetchPostsEvent) {
+      print('FetchPostEvent fire');
       yield PostLoading();
-      yield PostLoaded();
+      final items = await appRepository.fetchPosts(1);
+      yield PostsLoaded(items: items);
+    }else if (event is FetchPostEvent) {
+      print('FetchDataEvent fire');
+      yield PostLoading();
+      final item = await appRepository.fetchPost(1);
+      yield PostLoaded(item: item);
+    
+    
     }
   }
 }

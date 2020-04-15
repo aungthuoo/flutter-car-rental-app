@@ -14,7 +14,7 @@ class PNetworkImage extends StatelessWidget {
       imageUrl: image,
       placeholder: (context, url) => Center(child: CircularProgressIndicator()),
       errorWidget: (context, url, error) => Image.asset(
-        'assets/placeholder.jpg',
+        'assets/app-icon.jpg',
         fit: BoxFit.cover,
       ),
       fit: fit,

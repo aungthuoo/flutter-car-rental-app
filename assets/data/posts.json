@@ -1,0 +1,133 @@
+{
+    "categories": [
+      {
+        "index": 0,
+        "name": "ဟင်းသီးဟင်းရွက်",
+        "description": "Consequat mollit elit excepteur tempor commodo sunt excepteur mollit reprehenderit incididunt irure do dolore cillum. Labore nisi nulla in ad exercitation elit. Minim fugiat id ad elit officia esse laborum officia amet adipisicing qui et cupidatat sunt. Magna velit do sit aute. Eiusmod minim nulla fugiat ea nisi consectetur Lorem ex qui consequat laborum tempor. Aute eiusmod occaecat consectetur aliqua ea quis enim ullamco et magna irure.\r\n",
+        "image": "https://softwarezay.com/sample_images/grocery/categories/vegetable.png"
+      },
+      {
+        "index": 1,
+        "name": "အသီးများ",
+        "description": "Minim veniam mollit id nostrud eu aliqua ad ullamco nulla nulla Lorem deserunt ipsum labore. Veniam est aute fugiat veniam qui incididunt Lorem duis aute eu irure consequat. Consequat non laboris enim do proident proident occaecat cupidatat incididunt. Aliqua laboris esse dolore pariatur. Exercitation consequat consequat laborum adipisicing ex commodo est.\r\n",
+        "image": "https://softwarezay.com/sample_images/grocery/categories/fruit.png"
+      },
+      {
+        "index": 2,
+        "name": "အသားများ",
+        "description": "Dolore ad cillum ex est commodo id pariatur. Sunt non pariatur ad excepteur ut eu nisi magna. Dolore laboris irure amet in ut consequat cupidatat consectetur sunt aliquip nostrud tempor amet. Laboris eu deserunt consequat tempor aute proident cupidatat sint irure ut et occaecat velit laborum. Dolor adipisicing eiusmod dolore in voluptate elit non fugiat nulla elit cupidatat sunt velit.\r\n",
+        "image": "https://softwarezay.com/sample_images/grocery/categories/meat.png"
+      },
+      {
+        "index": 3,
+        "name": "ပင်လယ်စာများ",
+        "description": "Ipsum excepteur sint incididunt mollit eiusmod sit est enim reprehenderit ea elit. Ea eiusmod tempor cillum voluptate nulla ipsum sint nostrud ad ex commodo deserunt proident ipsum. Cupidatat nulla proident commodo voluptate sunt nostrud incididunt laborum labore.\r\n",
+        "image": "https://softwarezay.com/sample_images/grocery/categories/seafood.png"
+      }
+      
+    ],
+    "new_arrivals": [
+      {
+        "index": 0,
+        "name": "ဖရဲသီး",
+        "description": "ဖရဲသီး",
+        "image": "https://softwarezay.com/sample_images/grocery/items/watermelon.jpg",
+        "currency_unit": "Ks",
+        "unit" : "1 Kg", 
+        "price": 1381.78
+      },
+      {
+        "index": 1,
+        "name": "ကန်စွန်းရွက်",
+        "description": "Harris Murphy GEEKOSIS",
+        "image": "https://softwarezay.com/sample_images/grocery/items/water-apinatch.jpg",
+        "currency_unit": "Ks",
+        "unit" : "1 Kg", 
+        "price": 3190.03
+      },
+      {
+        "index": 2,
+        "name": "ကြက်သား",
+        "description": "Huffman Carney EVENTAGE",
+        "image": "https://softwarezay.com/sample_images/grocery/items/chicken.jpeg",
+        "currency_unit": "Ks",
+        "unit" : "1 Kg", 
+        "price": 1836.45
+      },
+      {
+        "index": 3,
+        "name": "ဗိုလ်စားပဲနီ",
+        "description": "Fletcher Hale ZANYMAX",
+        "image": "https://softwarezay.com/sample_images/grocery/items/red-bean.jpeg",
+        "currency_unit": "Ks",
+        "unit" : "1 Kg", 
+        "price": 1854.33
+      },
+      {
+        "index": 4,
+        "name": "ဆန်ဖြူ",
+        "description": "Vazquez Lowery AQUASSEUR",
+        "image": "https://softwarezay.com/sample_images/grocery/items/white-rice.jpeg",
+        "currency_unit": "Ks",
+        "unit" : "1 Kg", 
+        "price": 1438.97
+      }
+    ],
+    "daily_needs": [
+      {
+        "index": 0,
+        "name": "ဖရဲသီး",
+        "description": "ဖရဲသီး",
+        "image": "https://softwarezay.com/sample_images/grocery/items/watermelon.jpg",
+        "currency_unit": "Ks",
+        "unit" : "1 Kg", 
+        "price": 3019.6
+      },
+      {
+        "index": 1,
+        "name": "ကန်စွန်းရွက်",
+        "description": "Harris Murphy GEEKOSIS",
+        "image": "https://softwarezay.com/sample_images/grocery/items/water-apinatch.jpg",
+        "currency_unit": "Ks",
+        "unit" : "1 Kg", 
+        "price": 3901.24
+      },
+      {
+        "index": 2,
+        "name": "ကြက်သား",
+        "description": "Huffman Carney EVENTAGE",
+        "image": "https://softwarezay.com/sample_images/grocery/items/chicken.jpeg",
+        "currency_unit": "Ks",
+        "currency_unit": "Ks",
+        "unit" : "1 Kg", 
+        "price": 1407.4
+      },
+      {
+        "index": 3,
+        "name": "ဗိုလ်စားပဲနီ",
+        "description": "Fletcher Hale ZANYMAX",
+        "image": "https://softwarezay.com/sample_images/grocery/items/red-bean.jpeg",
+        "currency_unit": "Ks",
+        "unit" : "1 Kg", 
+        "price": 3051.82
+      },
+      {
+        "index": 4,
+        "name": "ဆန်ဖြူ",
+        "description": "Vazquez Lowery AQUASSEUR",
+        "image": "https://softwarezay.com/sample_images/grocery/items/white-rice.jpeg",
+        "currency_unit": "Ks",
+        "unit" : "1 Kg", 
+        "price": 3744.76
+      },
+      {
+        "index": 5,
+        "name": "ကြက်သား",
+        "description": "Huffman Carney EVENTAGE",
+        "image": "https://softwarezay.com/sample_images/grocery/items/chicken.jpeg",
+        "currency_unit": "Ks",
+        "unit" : "1 Kg", 
+        "price": 1501.33
+      }
+    ]
+  }

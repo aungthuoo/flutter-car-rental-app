@@ -17,14 +17,14 @@ class GroceryWishlistTabView extends StatelessWidget {
             padding: EdgeInsets.all(10.0),
             children: <Widget>[
               GroceryListItemThree(
-                image: pineapple,
+                image: 'https://softwarezay.com/sample_images/grocery/items/watermelon.jpg',
                 subtitle: "4 in a pack",
-                title: "Pineapple",
+                title: "ဖရဲသီး",
               ),
               GroceryListItemThree(
-                image: cabbage,
+                image: 'https://softwarezay.com/sample_images/grocery/items/water-apinatch.jpg',
                 subtitle: "1 kg",
-                title: "cabbage",
+                title: "ကန်စွန်းရွက်",
               ),
             ],
           ),
