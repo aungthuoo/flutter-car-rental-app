@@ -49,6 +49,7 @@ flutter:
   assets:
     - assets/app-icon.jpg
     - assets/data/posts.json
+    - assets/data/post.json
   # assets:
   #  - images/a_dot_burr.jpeg
   #  - images/a_dot_ham.jpeg

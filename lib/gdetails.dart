@@ -1,18 +1,42 @@
-/**
- * Author: Damodar Lohani
- * profile: https://github.com/lohanidamodar
-  */
-
 import 'package:flutter/material.dart';
-import './assets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sz_grocery/bloc/post_bloc.dart';
+import 'package:http/http.dart' as http;
 import './gwidgets/glistitem2.dart';
 import './gwidgets/gtypography.dart';
 import './network_image.dart';
+import 'model/post.dart';
 
 class GroceryDetailsPage extends StatelessWidget {
   static final String path = "lib/src/pages/grocery/gdetails.dart";
   @override
   Widget build(BuildContext context) {
+    return BlocProvider(
+        create: (context) =>
+              PostBloc(httpClient: http.Client())..add(FetchPostEvent()),
+              child: BlocBuilder<PostBloc, PostState>(
+          builder: (context, state) {
+            if (state is PostInitial) {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+            if (state is PostLoaded) {
+              return Scaffold(
+                appBar: AppBar(
+                  centerTitle: true,
+                  elevation: 0,
+                  backgroundColor: Colors.green,
+                  title: Text("Details"),
+                ),
+                body: _buildPageContent(context, state.item),
+              );
+            }
+          }
+        )
+    );
+              
+    /*        
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -22,27 +46,28 @@ class GroceryDetailsPage extends StatelessWidget {
       ),
       body: _buildPageContent(context),
     );
+    */
   }
 
-  Widget _buildPageContent(context) {
+  Widget _buildPageContent(context, Post item) {
     return Column(
       children: <Widget>[
         Expanded(
           child: ListView(
             children: <Widget>[
-              _buildItemCard(context),
+              _buildItemCard(context, item),
               Container(
                   padding: EdgeInsets.all(30.0),
                   child: GrocerySubtitle(
                       text:
-                          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras scelerisque nibh ut eros suscipit, vel cursus dolor imperdiet. Proin volutpat ligula eget purus maximus tristique. Pellentesque ullamcorper libero vitae metus feugiat fringilla. Ut luctus neque sed tortor placerat, faucibus mollis risus ullamcorper. Cras at nunc et odio ultrices tempor et.")),
+                          "${ item.description }")),
               Container(
                   padding: EdgeInsets.only(left: 20.0, bottom: 10.0),
                   child: GroceryTitle(text: "Related Items")),
               GroceryListItemTwo(
-                  title: "Broccoli", image: brocoli, subtitle: "1 kg"),
+                  title: "ကန်စွန်းရွက်", image: "https://softwarezay.com/sample_images/grocery/items/water-apinatch.jpg", subtitle: "1 kg"),
               GroceryListItemTwo(
-                  title: "Cabbage", image: cabbage, subtitle: "1 kg"),
+                  title: "ကြက်သား", image: "https://softwarezay.com/sample_images/grocery/items/chicken.jpeg", subtitle: "1 kg"),
             ],
           ),
         ),
@@ -64,7 +89,7 @@ class GroceryDetailsPage extends StatelessWidget {
     );
   }
 
-  Widget _buildItemCard(context) {
+  Widget _buildItemCard(context, Post post) {
     return Stack(
       children: <Widget>[
         Card(
@@ -85,14 +110,14 @@ class GroceryDetailsPage extends StatelessWidget {
                 Container(
                   width: MediaQuery.of(context).size.width,
                   child: PNetworkImage(
-                    cabbage,
+                    post.image,
                     height: 200,
                   ),
                 ),
                 SizedBox(
                   height: 10.0,
                 ),
-                GroceryTitle(text: "Local Cabbage"),
+                GroceryTitle(text: "${post.name}"),
                 SizedBox(
                   height: 5.0,
                 ),

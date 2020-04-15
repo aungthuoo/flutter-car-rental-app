@@ -172,7 +172,7 @@ class GroceryHomeTabView extends StatelessWidget {
       for (var i = 0; i < dailyNeeds.length; i++) {
         widgets.add(
           InkWell(
-          //onTap: () => _openDetailPage(context),
+          onTap: () => _openDetailPage(context),
           child: GroceryListItemTwo(
               title: dailyNeeds[i].name, image: dailyNeeds[i].image, subtitle: "1 kg"))
         );

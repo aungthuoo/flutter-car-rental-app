@@ -62,29 +62,18 @@ class AppRepository extends DBModel {
   }
 
   Future<Post> fetchPost(int id) async {
-    String loginToken = await getToken();
 
-    print('api call');
-    final response = await http.get(
-      _url + 'apps/car-rents/$id',
-      //headers: {HttpHeaders.authorizationHeader: "Bearer " + loginToken},
+    Map<String, dynamic> result = await parseJsonFromAssets('assets/data/post.json');
+    return Post(
+      id: result['id'],
+      name: result['name'],
+      description: result['description'],
+      image: result['image'],
+      currency_unit: result['currency_unit'],
+      amount_unit: result['amount_unit'],
+      price: result['price'],
     );
-    if (response.statusCode == 200) {
-      print(json.decode(response.body));
-      final item = json.decode(response.body);
-      final post = item['post'];
-      return Post(
-        id: post['id'],
-        name: post['name'],
-        description: post['description'],
-        image: post['image'],
-        currency_unit: post['currency_unit'],
-        amount_unit: post['amount_unit'],
-        price: post['price'].toDouble(),
-      );
-    } else {
-      throw Exception('error fetchData');
-    }
+
   }
 
   Future<String> getToken() async {
